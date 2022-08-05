@@ -1,4 +1,5 @@
 from django.views.generic.list import ListView
+# from django.db.models import Q
 
 from .forms import ExpenseSearchForm
 from .models import Expense, Category
@@ -11,12 +12,40 @@ class ExpenseListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         queryset = object_list if object_list is not None else self.object_list
+        # all tabl
+
 
         form = ExpenseSearchForm(self.request.GET)
+
         if form.is_valid():
+
             name = form.cleaned_data.get('name', '').strip()
+            date = form.cleaned_data.get('date', '')
+            # category = form.cleaned_data.get('category')
+            categories = form.cleaned_data.get('categories') # добавили строку
+            #cleaned_data.get('categories =проверенные данные из формы поля категория
+            sort_by = form.cleaned_data.get('sort_by')
+
+
             if name:
                 queryset = queryset.filter(name__icontains=name)
+
+            if date:
+                #queryset = queryset.filter(name__icontains=date)
+                queryset = queryset.filter(date=date)
+
+            if categories:
+                category_list = []
+                for i in categories: # пишем несколько категорий в форме и добавляем их в список
+                    category_list.append(i)
+                queryset = queryset.filter(category__name__in=category_list)
+                # в таблице в колонке категории берет те данные где категория равна значению из списка cat_list
+
+            if sort_by:
+                queryset = queryset.order_by(sort_by)
+
+
+
 
         return super().get_context_data(
             form=form,
