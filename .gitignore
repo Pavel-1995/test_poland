@@ -2,3 +2,10 @@
 .idea
 *.sqlite3
 __pycache__
+.env
+.app
+*.dir
+*.dat
+*.bak
+**/__pycache__
+/env

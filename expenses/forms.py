@@ -26,6 +26,8 @@ class ExpenseSearchForm(forms.ModelForm):
         self.fields['name'].required = False
         self.fields['date'].required = False  # ++ str поля не обязательное
         self.fields['categories'].required = False
+        self.fields['sort_by'].required = False
+
 
 
 

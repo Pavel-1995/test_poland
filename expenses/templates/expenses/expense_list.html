@@ -54,6 +54,14 @@
 		<td>{{total|floatformat:2}}</td>
 	</tr>
 	{% endfor %}
+  <tr/>
+  <tr>
+	  {% for categories, amount_sum in total_amount_spent.items %}
+  <tr>
+	  <td>{{categories}}:</td>
+	  <td>{{amount_sum|floatformat:2}}</td>
   </tr>
+  {% endfor %}
+  <tr/>
 </table>
 {% endblock %}
