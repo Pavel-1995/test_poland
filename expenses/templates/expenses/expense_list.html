@@ -56,12 +56,43 @@
 	{% endfor %}
   <tr/>
   <tr>
-	  {% for categories, amount_sum in total_amount_spent.items %}
+	  {% for category_sum, amount_sum in total_amount_spent.items %}
   <tr>
-	  <td>{{categories}}:</td>
+	  <td>{{category_sum}}:</td>
 	  <td>{{amount_sum|floatformat:2}}</td>
   </tr>
   {% endfor %}
   <tr/>
 </table>
+
+---------------------------------------
+
+<table border="2">
+  <caption>Total_Summary_per_Year-month</caption>
+  <tr>
+	  {% for date, amount_sum_year_month in total_summary_per_year_month.items %}
+  <tr>
+	  <td>{{date}}:</td>
+	  <td>{{amount_sum_year_month|floatformat:2}}</td>
+  </tr>
+  {% endfor %}
+  <tr/>
+</table>
+
+------------------------------------------
+
+<table border="3">
+  <caption>Total_Summary_per_number-month</caption>
+  <tr>
+	  {% for date, amount_sum_number_month in total_summary_per_number_month.items %}
+  <tr>
+	  <td>{{date}}:</td>
+	  <td>{{amount_sum_number_month|floatformat:2}}</td>
+  </tr>
+  {% endfor %}
+  <tr/>
+</table>
+--------------------------------------------
 {% endblock %}
+
+
