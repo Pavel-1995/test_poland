@@ -44,3 +44,12 @@ def total_summary_per_year_month(queryset):
     ))
 
 
+
+
+def get_about_categories(queryset):
+    about_categories = queryset \
+        .annotate(count_category=Count('expense')) \
+        .order_by('-count_category')
+    return about_categories
+
+
